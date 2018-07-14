@@ -1,6 +1,6 @@
 #  flockscreen
 
-A fake screen lock.
+A fake screen lock for macOS.
 
 ## Features
 
