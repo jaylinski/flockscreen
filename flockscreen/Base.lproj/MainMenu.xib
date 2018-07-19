@@ -15,6 +15,7 @@
             <connections>
                 <outlet property="statusMenu" destination="C7h-TS-P4R" id="hiv-JL-akp"/>
                 <outlet property="statusMenuActivate" destination="cX5-Yq-7t8" id="A4P-Pq-G6J"/>
+                <outlet property="statusMenuTrusted" destination="SmV-yR-Ffs" id="Dsy-WQ-cPY"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -384,7 +385,7 @@
                     </menu>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-130" y="-252"/>
+            <point key="canvasLocation" x="-228" y="-631"/>
         </menu>
         <menu id="C7h-TS-P4R" userLabel="Status Menu">
             <items>
@@ -395,17 +396,28 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="N8j-nb-NYV"/>
-                <menuItem title="About flockscreen" id="NZs-AW-es8">
+                <menuItem title="About flockscreen" enabled="NO" id="cig-ll-Zji">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Quit" id="zIe-Uw-zDO">
+                <menuItem isSeparatorItem="YES" id="7Ch-xB-JXA"/>
+                <menuItem title="Preferences..." enabled="NO" id="NZs-AW-es8">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Listen for keyboard input" allowsKeyEquivalentWhenHidden="YES" id="SmV-yR-Ffs">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="statusMenuTrusted:" target="Voe-Tx-rLC" id="mvL-uP-Lkk"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="uPu-Wy-oxK"/>
+                <menuItem title="Quit flockscreen" id="zIe-Uw-zDO">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="terminate:" target="-1" id="tsU-Qa-eHI"/>
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-284" y="-135"/>
+            <point key="canvasLocation" x="89" y="-576"/>
         </menu>
         <userDefaultsController representsSharedInstance="YES" id="wdl-uE-oEH"/>
     </objects>

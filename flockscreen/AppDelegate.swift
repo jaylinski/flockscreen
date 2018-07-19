@@ -6,12 +6,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var statusMenuActivate: NSMenuItem!
+    @IBOutlet weak var statusMenuTrusted: NSMenuItem!
     
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     
     private lazy var camera = Camera()
 
     private var active = false
+    private var processTrusted = false
     
     @IBAction func statusMenuActivate(sender: NSMenuItem) {
         // Wait a second until activation to avoid immediate locking
@@ -20,12 +22,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         })
     }
     
+    @IBAction func statusMenuTrusted(_ sender: Any) {
+        // TODO Directly open the security settings
+        NSWorkspace.shared.launchApplication("System preferences")
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
         statusItem.title = "flockscreen"
         statusItem.menu = statusMenu
         
+        self.checkPrivileges()
+        
         NSEvent.addGlobalMonitorForEvents(matching: .mouseMoved, handler: { (event: NSEvent?) in
+            self.takePictureAndLockScreen()
+        })
+        
+        NSEvent.addGlobalMonitorForEvents(matching: .keyDown, handler: { (event: NSEvent?) in
+            // TODO Make the deactivation key configurable!
+            if (Int(event?.keyCode ?? 0) == 44) {
+                // TODO Write deactivation events to log file
+                self.active = false
+            }
+
             self.takePictureAndLockScreen()
         })
         
@@ -34,16 +52,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             selector: #selector(self.screenIsLocked(notification:)),
             name: Notification.Name("com.apple.screenIsLocked"),
             object: nil)
-        
-        NSEvent.addLocalMonitorForEvents(matching: .keyDown, handler: { (event: NSEvent?) -> NSEvent? in
-            // TODO Make the deactivation key configurable!
-            if (Int(event?.keyCode ?? 0) == 999) {
-                // TODO Write deactivation events to log file
-                self.active = false
-            }
-            
-            return event
-        })
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -56,6 +64,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func screenIsLocked(notification: Notification) {
         self.active = false
+    }
+    
+    func checkPrivileges() {
+        self.processTrusted = AXIsProcessTrustedWithOptions([kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: true] as CFDictionary)
+        self.statusMenuTrusted.state = NSControl.StateValue(self.processTrusted ? 1 : 0)
     }
     
     func takePictureAndLockScreen() {

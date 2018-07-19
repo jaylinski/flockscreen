@@ -9,15 +9,24 @@ A fake screen lock for macOS.
 
 * Takes a picture (and saves it in your "Pictures" folder) if someone triggers the lock
 
+### Lock triggers
+
+* Mouse movements
+* Keyboard inputs<sup>[1]</sup>
+
+[1] Only works if you allow the app to control your computer. 
+You will be asked about this permission when you first start the app. 
+You can manually set it in "System preferences > Security > Privacy > Accessiblity".
+
 ## Download
 
 There is currently no download.
 
-You have to build this app on your own with Xcode
+You have to build this app on your own with Xcode.
 
 ## How to use
 
-* Start the App (you have to build it on your own)
+* Start the App (you have to build it on your own, allow the app to control your computer)
 * Click on "flockscreen" in the status bar
 * Click on "Activate", the fake lock will be active after one second
 * Get away from your computer and wait for mischievous colleagues trying to tamper with your system
@@ -26,7 +35,7 @@ You have to build this app on your own with Xcode
 
 * Make activation shortcut configurable
 * Implement deactivation (defuse) option
-* Add fancy icon (that reflects if flockscreen is active)
+* Add fancy icon (that reflects if flockscreen is active, if someone activated the lock, if process is trusted)
 * Add notfication to notification center if a picture was taken
 * Try to build app with sandbox enabled, so it can be published in app store
 * Add "About" page
