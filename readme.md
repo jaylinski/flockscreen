@@ -33,12 +33,14 @@ You have to build this app on your own with Xcode.
 
 ## Roadmap
 
-* Make activation shortcut configurable
-* Implement deactivation (defuse) option
 * Add fancy icon (that reflects if flockscreen is active, if someone activated the lock, if process is trusted)
 * Add notfication to notification center if a picture was taken
-* Try to build app with sandbox enabled, so it can be published in app store
+* Implement preferences with [sindresorhus/Preferences](https://github.com/sindresorhus/Preferences) and SPM
+  * Make activation shortcut configurable
+  * Make picutres folder configurable
+  * Make deactivation (defuse) option configurable
 * Add "About" page
+* Try to build app with sandbox enabled, so it can be published in app store
 
 ## License
 
