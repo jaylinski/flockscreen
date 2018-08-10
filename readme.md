@@ -27,18 +27,19 @@ You have to build this app on your own with Xcode.
 ## How to use
 
 * Start the App (you have to build it on your own, allow the app to control your computer)
-* Click on "flockscreen" in the status bar
-* Click on "Activate", the fake lock will be active after one second
+* Click on lock icon 🔓 in the status bar
+* Click on "Lock Screen", the fake lock will be active after one second
 * Get away from your computer and wait for mischievous colleagues trying to tamper with your system
+
+> If you don't want to let others know that they triggered your fake lock, disable notifications and sounds from flockscreen in your notification settings.
 
 ## Roadmap
 
-* Add fancy icon (that reflects if flockscreen is active, if someone activated the lock, if process is trusted)
-* Add notfication to notification center if a picture was taken
 * Implement preferences with [sindresorhus/Preferences](https://github.com/sindresorhus/Preferences) and SPM
   * Make activation shortcut configurable
   * Make picutres folder configurable
   * Make deactivation (defuse) option configurable
+* Use new UserNotifications framework as soon as macOS 10.4 is released
 * Add "About" page
 * Try to build app with sandbox enabled, so it can be published in app store
 

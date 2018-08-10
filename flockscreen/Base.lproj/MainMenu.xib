@@ -14,7 +14,7 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="flockscreen" customModuleProvider="target">
             <connections>
                 <outlet property="statusMenu" destination="C7h-TS-P4R" id="hiv-JL-akp"/>
-                <outlet property="statusMenuActivate" destination="cX5-Yq-7t8" id="A4P-Pq-G6J"/>
+                <outlet property="statusMenuActivate" destination="cX5-Yq-7t8" id="1yW-pC-QD0"/>
                 <outlet property="statusMenuTrusted" destination="SmV-yR-Ffs" id="Dsy-WQ-cPY"/>
             </connections>
         </customObject>
@@ -389,10 +389,10 @@
         </menu>
         <menu id="C7h-TS-P4R" userLabel="Status Menu">
             <items>
-                <menuItem title="Activate" keyEquivalent="f" allowsKeyEquivalentWhenHidden="YES" id="cX5-Yq-7t8">
+                <menuItem title="Lock Screen" keyEquivalent="f" allowsKeyEquivalentWhenHidden="YES" id="cX5-Yq-7t8" userLabel="Status Menu Lock Screen">
                     <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                     <connections>
-                        <action selector="statusMenuActivateWithSender:" target="Voe-Tx-rLC" id="CEM-o2-yox"/>
+                        <action selector="statusMenuActivate:" target="Voe-Tx-rLC" id="q1L-qK-xZX"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="N8j-nb-NYV"/>
@@ -406,7 +406,7 @@
                 <menuItem title="Listen for keyboard input" allowsKeyEquivalentWhenHidden="YES" id="SmV-yR-Ffs">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="statusMenuTrusted:" target="Voe-Tx-rLC" id="mvL-uP-Lkk"/>
+                        <action selector="statusMenuActivate:" target="Voe-Tx-rLC" id="mvL-uP-Lkk"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="uPu-Wy-oxK"/>
@@ -417,7 +417,7 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="89" y="-576"/>
+            <point key="canvasLocation" x="85" y="-576"/>
         </menu>
         <userDefaultsController representsSharedInstance="YES" id="wdl-uE-oEH"/>
     </objects>
