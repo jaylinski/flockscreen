@@ -39,7 +39,7 @@ You have to build this app on your own with Xcode.
   * Make activation shortcut configurable
   * Make picutres folder configurable
   * Make deactivation (defuse) option configurable
-* Use new UserNotifications framework as soon as macOS 10.4 is released
+* Use new UserNotifications framework as soon as macOS 10.14 is released
 * Add "About" page
 * Try to build app with sandbox enabled, so it can be published in app store
 * Add application to [serhii-londar/open-source-mac-os-apps](https://github.com/serhii-londar/open-source-mac-os-apps)
