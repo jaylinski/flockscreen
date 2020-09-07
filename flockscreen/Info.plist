@@ -31,6 +31,6 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Captures a picture of your mischevous collegue</string>
+	<string>Capture a picture of your mischievous collegues</string>
 </dict>
 </plist>
