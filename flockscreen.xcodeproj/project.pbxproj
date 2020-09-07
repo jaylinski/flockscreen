@@ -3,36 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37263C5225065BF200339896 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3735AE5B209DE87E002EF991 /* MainMenu.xib */; };
 		3735AE58209DE87D002EF991 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735AE57209DE87D002EF991 /* AppDelegate.swift */; };
 		3735AE5A209DE87E002EF991 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3735AE59209DE87E002EF991 /* Assets.xcassets */; };
-		3735AE5D209DE87E002EF991 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3735AE5B209DE87E002EF991 /* MainMenu.xib */; };
 		37708C2620FA72BC007D5771 /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37708C2520FA72BC007D5771 /* util.swift */; };
 		37E18FAC211E15970055B19C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 37E18FA8211E15960055B19C /* LICENSE */; };
 		37E18FAD211E15970055B19C /* .editorconfig in Resources */ = {isa = PBXBuildFile; fileRef = 37E18FA9211E15960055B19C /* .editorconfig */; };
 		37E18FAE211E15970055B19C /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 37E18FAA211E15970055B19C /* assets */; };
 		37E18FAF211E15970055B19C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 37E18FAB211E15970055B19C /* .gitignore */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		3735AE65209DE87E002EF991 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3735AE4C209DE87C002EF991 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3735AE53209DE87D002EF991;
-			remoteInfo = flockscreen;
-		};
-		3735AE70209DE87E002EF991 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3735AE4C209DE87C002EF991 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3735AE53209DE87D002EF991;
-			remoteInfo = flockscreen;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3701FFC520DD18BF00753474 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
@@ -42,8 +25,6 @@
 		3735AE5C209DE87E002EF991 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		3735AE5E209DE87E002EF991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3735AE5F209DE87E002EF991 /* flockscreen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = flockscreen.entitlements; sourceTree = "<group>"; };
-		3735AE64209DE87E002EF991 /* flockscreenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = flockscreenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3735AE6F209DE87E002EF991 /* flockscreenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = flockscreenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		37708C2520FA72BC007D5771 /* util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
 		37E18FA8211E15960055B19C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		37E18FA9211E15960055B19C /* .editorconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .editorconfig; sourceTree = "<group>"; };
@@ -53,20 +34,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		3735AE51209DE87D002EF991 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3735AE61209DE87E002EF991 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3735AE6C209DE87E002EF991 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -93,8 +60,6 @@
 			isa = PBXGroup;
 			children = (
 				3735AE54209DE87D002EF991 /* flockscreen.app */,
-				3735AE64209DE87E002EF991 /* flockscreenTests.xctest */,
-				3735AE6F209DE87E002EF991 /* flockscreenUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -132,42 +97,6 @@
 			productReference = 3735AE54209DE87D002EF991 /* flockscreen.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3735AE63209DE87E002EF991 /* flockscreenTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3735AE7B209DE87E002EF991 /* Build configuration list for PBXNativeTarget "flockscreenTests" */;
-			buildPhases = (
-				3735AE60209DE87E002EF991 /* Sources */,
-				3735AE61209DE87E002EF991 /* Frameworks */,
-				3735AE62209DE87E002EF991 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3735AE66209DE87E002EF991 /* PBXTargetDependency */,
-			);
-			name = flockscreenTests;
-			productName = flockscreenTests;
-			productReference = 3735AE64209DE87E002EF991 /* flockscreenTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		3735AE6E209DE87E002EF991 /* flockscreenUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3735AE7E209DE87E002EF991 /* Build configuration list for PBXNativeTarget "flockscreenUITests" */;
-			buildPhases = (
-				3735AE6B209DE87E002EF991 /* Sources */,
-				3735AE6C209DE87E002EF991 /* Frameworks */,
-				3735AE6D209DE87E002EF991 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3735AE71209DE87E002EF991 /* PBXTargetDependency */,
-			);
-			name = flockscreenUITests;
-			productName = flockscreenUITests;
-			productReference = 3735AE6F209DE87E002EF991 /* flockscreenUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -175,29 +104,22 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1170;
 				ORGANIZATIONNAME = "Jay Linski";
 				TargetAttributes = {
 					3735AE53209DE87D002EF991 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1170;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 0;
 							};
 						};
 					};
-					3735AE63209DE87E002EF991 = {
-						CreatedOnToolsVersion = 9.3;
-						TestTargetID = 3735AE53209DE87D002EF991;
-					};
-					3735AE6E209DE87E002EF991 = {
-						CreatedOnToolsVersion = 9.3;
-						TestTargetID = 3735AE53209DE87D002EF991;
-					};
 				};
 			};
 			buildConfigurationList = 3735AE4F209DE87C002EF991 /* Build configuration list for PBXProject "flockscreen" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 11.4";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -210,8 +132,6 @@
 			projectRoot = "";
 			targets = (
 				3735AE53209DE87D002EF991 /* flockscreen */,
-				3735AE63209DE87E002EF991 /* flockscreenTests */,
-				3735AE6E209DE87E002EF991 /* flockscreenUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -221,26 +141,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37263C5225065BF200339896 /* MainMenu.xib in Resources */,
 				37E18FAE211E15970055B19C /* assets in Resources */,
 				37E18FAD211E15970055B19C /* .editorconfig in Resources */,
 				37E18FAC211E15970055B19C /* LICENSE in Resources */,
 				3735AE5A209DE87E002EF991 /* Assets.xcassets in Resources */,
 				37E18FAF211E15970055B19C /* .gitignore in Resources */,
-				3735AE5D209DE87E002EF991 /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3735AE62209DE87E002EF991 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3735AE6D209DE87E002EF991 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,34 +162,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3735AE60209DE87E002EF991 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3735AE6B209DE87E002EF991 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3735AE66209DE87E002EF991 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3735AE53209DE87D002EF991 /* flockscreen */;
-			targetProxy = 3735AE65209DE87E002EF991 /* PBXContainerItemProxy */;
-		};
-		3735AE71209DE87E002EF991 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3735AE53209DE87D002EF991 /* flockscreen */;
-			targetProxy = 3735AE70209DE87E002EF991 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3735AE5B209DE87E002EF991 /* MainMenu.xib */ = {
@@ -348,7 +227,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -402,7 +281,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -414,8 +293,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = flockscreen/flockscreen.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = flockscreen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -423,7 +305,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jaylinski.flockscreen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -431,8 +313,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = flockscreen/flockscreen.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = flockscreen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -440,85 +325,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jaylinski.flockscreen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Release;
-		};
-		3735AE7C209DE87E002EF991 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = flockscreenTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = jaylinski.flockscreenTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/flockscreen.app/Contents/MacOS/flockscreen";
-			};
-			name = Debug;
-		};
-		3735AE7D209DE87E002EF991 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = flockscreenTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = jaylinski.flockscreenTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/flockscreen.app/Contents/MacOS/flockscreen";
-			};
-			name = Release;
-		};
-		3735AE7F209DE87E002EF991 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = flockscreenUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = jaylinski.flockscreenUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_TARGET_NAME = flockscreen;
-			};
-			name = Debug;
-		};
-		3735AE80209DE87E002EF991 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = flockscreenUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = jaylinski.flockscreenUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_TARGET_NAME = flockscreen;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -539,24 +346,6 @@
 			buildConfigurations = (
 				3735AE79209DE87E002EF991 /* Debug */,
 				3735AE7A209DE87E002EF991 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3735AE7B209DE87E002EF991 /* Build configuration list for PBXNativeTarget "flockscreenTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3735AE7C209DE87E002EF991 /* Debug */,
-				3735AE7D209DE87E002EF991 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3735AE7E209DE87E002EF991 /* Build configuration list for PBXNativeTarget "flockscreenUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3735AE7F209DE87E002EF991 /* Debug */,
-				3735AE80209DE87E002EF991 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

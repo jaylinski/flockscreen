@@ -10,51 +10,38 @@ struct System {
     }
 }
 
-class Camera {
-    let captureSession = AVCaptureSession()
-    let captureImageOutput = AVCaptureStillImageOutput()
+class PhotoCaptureProcessor: NSObject, AVCapturePhotoCaptureDelegate {
     var captureDevice : AVCaptureDevice?
+    let captureSession = AVCaptureSession()
+    let photoOutput = AVCapturePhotoOutput()
+    let photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
     let picturesDirectory = FileManager.default.urls(for: .picturesDirectory, in: .userDomainMask)[0]
-    let stillImageOutput = AVCaptureStillImageOutput()
-    
+
     func captureStillImage() {
-        let devices = AVCaptureDevice.devices()
-        
         // Find the FaceTime HD camera object
-        for device in devices {
-            if ((device as AnyObject).hasMediaType(AVMediaType.video)) {
-                captureDevice = device
-            }
+        captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+        guard captureDevice != nil else { return }
+
+        do {
+            try captureSession.addInput(AVCaptureDeviceInput(device: captureDevice!))
+
+            guard self.captureSession.canAddOutput(photoOutput) else { return }
+            self.captureSession.sessionPreset = AVCaptureSession.Preset.photo
+            self.captureSession.addOutput(photoOutput)
+            self.captureSession.commitConfiguration()
+            self.captureSession.startRunning()
+
+            self.photoOutput.capturePhoto(with: photoSettings, delegate: self)
+        } catch {
+            print(AVCaptureSessionErrorKey.description)
         }
-        
-        if captureDevice != nil {
-            do {
-                try captureSession.addInput(AVCaptureDeviceInput(device: captureDevice!))
-                captureSession.sessionPreset = AVCaptureSession.Preset.photo
-                captureSession.startRunning()
-                
-                self.stillImageOutput.outputSettings = [AVVideoCodecKey:AVVideoCodecType.jpeg]
-                if self.captureSession.canAddOutput(self.stillImageOutput) {
-                    self.captureSession.addOutput(self.stillImageOutput)
-                }
-                if let videoConnection = self.stillImageOutput.connection(with: AVMediaType.video) {
-                    // Give camera some time to adjust to light conditions
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-                        self.stillImageOutput.captureStillImageAsynchronously(from: videoConnection) {
-                            (imageDataSampleBuffer, error) -> Void in
-                            let time = NSDate().timeIntervalSince1970
-                            let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer!)
-                            let imageUrl = self.picturesDirectory.appendingPathComponent("flockscreen.\(time).jpg", isDirectory: false)
-                            try? imageData?.write(to: imageUrl)
-                            DispatchQueue.main.async() {
-                                self.captureSession.stopRunning()
-                            }
-                        }
-                    })
-                }
-            } catch {
-                print(AVCaptureSessionErrorKey.description)
-            }
-        }
+    }
+
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        let time = NSDate().timeIntervalSince1970
+        let imageData = photo.fileDataRepresentation()
+        let imageUrl = self.picturesDirectory.appendingPathComponent("flockscreen.\(time).jpg", isDirectory: false)
+        ((try? imageData?.write(to: imageUrl)) as ()??)
+        self.captureSession.stopRunning()
     }
 }

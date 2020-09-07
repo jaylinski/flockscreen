@@ -1,3 +1,4 @@
+import AVKit
 import Cocoa
 import IOKit
 
@@ -10,7 +11,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
-    private lazy var camera = Camera()
+    private lazy var photoCapture = PhotoCaptureProcessor()
 
     private var active = false
     private var processTrusted = false
@@ -28,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        statusItem.image = NSImage(named: NSImage.Name.lockUnlockedTemplate)
+        statusItem.button?.image = NSImage(named: NSImage.lockUnlockedTemplateName)
         statusItem.menu = statusMenu
 
         self.checkPrivileges()
@@ -69,6 +70,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func checkPrivileges() {
         self.processTrusted = AXIsProcessTrustedWithOptions([kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: true] as CFDictionary)
         self.statusMenuTrusted.state = NSControl.StateValue(self.processTrusted ? 1 : 0)
+
+        if AVCaptureDevice.authorizationStatus(for: .video) == AVAuthorizationStatus.notDetermined {
+            AVCaptureDevice.requestAccess(for: .video) { granted in
+                debugPrint("Granted access to video capture device")
+                self.takePicture()
+            }
+        }
     }
 
     func takePictureAndLockScreen() {
@@ -90,19 +98,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func takePicture() {
-        camera.captureStillImage()
+        photoCapture.captureStillImage()
 
         debugPrint("Took a picture")
     }
 
     func activateLock() {
         self.active = true
-        self.statusItem.image = NSImage(named: NSImage.Name.lockLockedTemplate)
+        self.statusItem.button?.image = NSImage(named: NSImage.lockLockedTemplateName)
     }
 
     func deactivateLock() {
         self.active = false
-        self.statusItem.image = NSImage(named: NSImage.Name.lockUnlockedTemplate)
+        self.statusItem.button?.image = NSImage(named: NSImage.lockUnlockedTemplateName)
     }
 
     func lockScreen() {
