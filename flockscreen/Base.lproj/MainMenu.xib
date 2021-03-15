@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -15,7 +16,7 @@
             <connections>
                 <outlet property="statusMenu" destination="C7h-TS-P4R" id="hiv-JL-akp"/>
                 <outlet property="statusMenuActivate" destination="cX5-Yq-7t8" id="1yW-pC-QD0"/>
-                <outlet property="statusMenuTrusted" destination="SmV-yR-Ffs" id="Dsy-WQ-cPY"/>
+                <outlet property="statusMenuKeyboardTrigger" destination="SmV-yR-Ffs" id="Dsy-WQ-cPY"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -389,25 +390,32 @@
         </menu>
         <menu id="C7h-TS-P4R" userLabel="Status Menu">
             <items>
-                <menuItem title="Lock Screen" keyEquivalent="f" allowsKeyEquivalentWhenHidden="YES" id="cX5-Yq-7t8" userLabel="Status Menu Lock Screen">
+                <menuItem title="Activate lock" keyEquivalent="f" allowsKeyEquivalentWhenHidden="YES" id="cX5-Yq-7t8" userLabel="Status Menu Lock Screen">
                     <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                     <connections>
                         <action selector="statusMenuActivate:" target="Voe-Tx-rLC" id="q1L-qK-xZX"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="N8j-nb-NYV"/>
-                <menuItem title="About flockscreen" enabled="NO" id="cig-ll-Zji">
+                <menuItem title="About flockscreen" id="cig-ll-Zji">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="statusMenuAbout:" target="Voe-Tx-rLC" id="ADa-5t-Mkp"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="7Ch-xB-JXA"/>
                 <menuItem title="Preferences..." enabled="NO" id="NZs-AW-es8">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Listen for keyboard input" allowsKeyEquivalentWhenHidden="YES" id="SmV-yR-Ffs">
+                <menuItem isSeparatorItem="YES" id="ukQ-UB-g8y"/>
+                <menuItem title="Keyboard trigger" allowsKeyEquivalentWhenHidden="YES" id="SmV-yR-Ffs">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="statusMenuActivate:" target="Voe-Tx-rLC" id="mvL-uP-Lkk"/>
+                        <action selector="statusMenuKeyboardTrigger:" target="Voe-Tx-rLC" id="Xri-Pp-BrK"/>
                     </connections>
+                </menuItem>
+                <menuItem title="Mouse trigger" state="on" enabled="NO" allowsKeyEquivalentWhenHidden="YES" id="8wU-n8-sQ3">
+                    <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="uPu-Wy-oxK"/>
                 <menuItem title="Quit flockscreen" id="zIe-Uw-zDO">

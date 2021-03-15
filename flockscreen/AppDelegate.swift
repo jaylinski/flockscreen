@@ -1,58 +1,86 @@
 import AVKit
 import Cocoa
 import IOKit
+import UserNotifications
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var statusMenuActivate: NSMenuItem!
-    @IBOutlet weak var statusMenuTrusted: NSMenuItem!
+    @IBOutlet weak var statusMenuKeyboardTrigger: NSMenuItem!
 
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
     private lazy var photoCapture = PhotoCaptureProcessor()
 
-    private var active = false
-    private var processTrusted = false
+    private var lockActive: Bool = false
+    private var lockTriggered: Bool = false
+    private var lockDelay: Int = 1
 
     @IBAction func statusMenuActivate(_ sender: Any) {
         // Wait a second until activation to avoid immediate locking
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(self.lockDelay), execute: {
             self.activateLock()
         })
     }
-
-    @IBAction func statusMenuTrusted(_ sender: Any) {
-        // TODO Directly open the security settings
-        NSWorkspace.shared.launchApplication("System preferences")
+    
+    @IBAction func statusMenuAbout(_ sender: Any) {
+        NSApp.orderFrontStandardAboutPanel(self)
     }
 
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
+    @IBAction func statusMenuKeyboardTrigger(_ sender: Any) {
+        let alert = NSAlert()
+        alert.messageText = "How to enable the keyboard trigger" // TODO localize
+        alert.informativeText = "Go to 'Privacy → Accessibility' and add 'flockscreen'." // TODO localize
+        alert.runModal()
+        
+        NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Library/PreferencePanes/Security.prefPane"))
+    }
+
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        self.checkPrivileges()
+    }
+    
+    func applicationDidFinishLaunching(_ notification: Notification) {
         statusItem.button?.image = NSImage(named: NSImage.lockUnlockedTemplateName)
         statusItem.menu = statusMenu
 
-        self.checkPrivileges()
-
         NSEvent.addGlobalMonitorForEvents(matching: .mouseMoved, handler: { (event: NSEvent?) in
+            guard self.lockActive else { return }
+            
+            debugPrint("Trigger: mouse")
             self.takePictureAndLockScreen()
         })
 
         NSEvent.addGlobalMonitorForEvents(matching: .keyDown, handler: { (event: NSEvent?) in
+            guard self.lockActive else { return }
+            
             // TODO Make the deactivation key configurable!
-            if (Int(event?.keyCode ?? 0) == 44) {
+            if Int(event?.keyCode ?? 0) == 44 { // Key 44: j
                 // TODO Write deactivation events to log file
-                self.deactivateLock()
+                return self.deactivateLock()
             }
-
+            
+            debugPrint("Trigger: keyboard")
             self.takePictureAndLockScreen()
         })
 
+        // If the system locks itself, we can safely deactivate our fake lock
         DistributedNotificationCenter.default.addObserver(
             self,
             selector: #selector(self.screenIsLocked(notification:)),
             name: Notification.Name("com.apple.screenIsLocked"),
-            object: nil)
+            object: nil
+        )
+        
+        // If the system is unlocked, tell the user if the lock was triggered
+        DistributedNotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.screenIsUnlocked(notification:)),
+            name: Notification.Name("com.apple.screenIsUnlocked"),
+            object: nil
+        )
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -63,63 +91,97 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.takePictureAndLockScreen()
     }
 
-    @objc func screenIsLocked(notification: Notification) {
+    @objc func screenIsLocked(notification: Notification) -> Void {
         self.deactivateLock()
     }
+    
+    @objc func screenIsUnlocked(notification: Notification) -> Void {
+        guard self.lockTriggered else { return }
+        
+        self.lockTriggered = false
+        self.deliverNotification()
+    }
 
-    func checkPrivileges() {
-        self.processTrusted = AXIsProcessTrustedWithOptions([kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: true] as CFDictionary)
-        self.statusMenuTrusted.state = NSControl.StateValue(self.processTrusted ? 1 : 0)
+    func checkPrivileges() -> Void {
+        let processTrusted: Bool = AXIsProcessTrustedWithOptions([kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: true] as CFDictionary)
+        self.statusMenuKeyboardTrigger.state = NSControl.StateValue(processTrusted ? 1 : 0)
+        debugPrint("AXIsProcessTrustedWithOptions: " + processTrusted.description)
 
         if AVCaptureDevice.authorizationStatus(for: .video) == AVAuthorizationStatus.notDetermined {
             AVCaptureDevice.requestAccess(for: .video) { granted in
                 debugPrint("Granted access to video capture device")
-                self.takePicture()
+            }
+        }
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            if let error = error {
+                debugPrint("Grant for notification center failed: " + error.localizedDescription)
+            }
+            
+            if granted {
+                debugPrint("Granted access to notification center")
+            } else {
+                debugPrint("Grant for notification center not given")
             }
         }
     }
 
-    func takePictureAndLockScreen() {
-        if active {
-            self.takePicture()
-            self.lockScreen()
-            self.deliverNotification()
-        }
+    func takePictureAndLockScreen() -> Void {
+        guard self.lockActive else { return }
+
+        self.lockTriggered = true
+        self.lockScreen()
+        self.takePicture()
     }
     
     func deliverNotification() -> Void {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            let notification = NSUserNotification()
-            notification.title = "Screen Lock triggered!"
-            notification.subtitle = "Captured image and saved it to pictures folder."
-            notification.soundName = NSUserNotificationDefaultSoundName
-            NSUserNotificationCenter.default.deliver(notification)
+        let content = UNMutableNotificationContent()
+        content.title = NSString.localizedUserNotificationString(forKey: "Lock was triggered!", arguments: nil)
+        content.body = NSString.localizedUserNotificationString(forKey: "Captured image and saved it to pictures folder.", arguments: nil)
+        content.sound = UNNotificationSound.default
+        // TODO Add "Open" action which opens the captured image
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
+            if let error = error {
+                debugPrint("Sending notification failed: " + error.localizedDescription)
+            }
+            debugPrint("Sent notification")
         })
     }
 
-    func takePicture() {
+    func takePicture() -> Void {
         photoCapture.captureStillImage()
 
         debugPrint("Took a picture")
     }
 
-    func activateLock() {
-        self.active = true
+    func activateLock() -> Void {
+        guard !self.lockActive else { return }
+        
+        debugPrint("Lock activated")
+        
+        self.lockActive = true
         self.statusItem.button?.image = NSImage(named: NSImage.lockLockedTemplateName)
     }
 
-    func deactivateLock() {
-        self.active = false
+    func deactivateLock() -> Void {
+        guard self.lockActive else { return }
+        
+        debugPrint("Lock deactivated")
+        
+        self.lockActive = false
         self.statusItem.button?.image = NSImage(named: NSImage.lockUnlockedTemplateName)
     }
 
-    func lockScreen() {
+    func lockScreen() -> Void {
         System.lock()
+        
+        debugPrint("Locked screen")
 
         // Avoid immediate re-locking after unlocking the system lock.
         self.deactivateLock()
-
-        debugPrint("Locked screen and deactivated locking")
     }
 }
 

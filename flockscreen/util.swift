@@ -11,7 +11,7 @@ struct System {
 }
 
 class PhotoCaptureProcessor: NSObject, AVCapturePhotoCaptureDelegate {
-    var captureDevice : AVCaptureDevice?
+    var captureDevice: AVCaptureDevice?
     let captureSession = AVCaptureSession()
     let photoOutput = AVCapturePhotoOutput()
     let photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])

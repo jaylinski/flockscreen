@@ -1,12 +1,13 @@
 #  flockscreen
 
-A fake screen lock for macOS.
+An invisible (fake) screen lock for macOS.
 
 > Do not use this app if you want to safely lock your macOS!   
   The locking mechanism of this app can possibly be circumvented!
 
 ## Features
 
+* Adds an invisible screen lock
 * Takes a picture (and saves it in your "Pictures" folder) if someone triggers the lock
 
 ### Lock triggers
@@ -20,18 +21,23 @@ You can manually set it in "System preferences > Security > Privacy > Accessibli
 
 ## Download
 
-There is currently no download.
+There is currently no official download.
 
-You have to build this app on your own with Xcode.
+You have to build this app on your own with Xcode. You can download a development build from the [release page](https://github.com/jaylinski/flockscreen/releases).
 
 ## How to use
 
-* Start the App (you have to build it on your own, allow the app to control your computer)
-* Click on lock icon 🔓 in the status bar
-* Click on "Lock Screen", the fake lock will be active after one second
+* Start the app (allow the app to control your computer, this is required to capture keyboard inputs)
+* Click on the lock icon 🔓 in the status bar
+* Click on "Activate lock", the invisible lock will be active after one second
 * Get away from your computer and wait for mischievous colleagues trying to tamper with your system
+* You will get a notification if some triggered the lock as soon as you unlock macOS again
+* You can deactivate the lock by pressing `j` (making this configurable is on the roadmap)
 
-> If you don't want to let others know that they triggered your fake lock, disable notifications and sounds from flockscreen in your notification settings.
+## Requirements
+
+* macOS 10.15 Catalina or greater
+* Camera (AVCaptureDevice)
 
 ## Roadmap
 
@@ -39,8 +45,6 @@ You have to build this app on your own with Xcode.
   * Make activation shortcut configurable
   * Make picutres folder configurable
   * Make deactivation (defuse) option configurable
-* Use new UserNotifications framework as soon as macOS 10.14 is released
-* Add "About" page
 * Try to build app with sandbox enabled, so it can be published in app store
 * Add application to [serhii-londar/open-source-mac-os-apps](https://github.com/serhii-londar/open-source-mac-os-apps)
 

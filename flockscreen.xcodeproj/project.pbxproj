@@ -10,6 +10,7 @@
 		37263C5225065BF200339896 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3735AE5B209DE87E002EF991 /* MainMenu.xib */; };
 		3735AE58209DE87D002EF991 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735AE57209DE87D002EF991 /* AppDelegate.swift */; };
 		3735AE5A209DE87E002EF991 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3735AE59209DE87E002EF991 /* Assets.xcassets */; };
+		3745DA9425FFBDA3004C9485 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 3745DA9325FFBDA3004C9485 /* Credits.html */; };
 		37708C2620FA72BC007D5771 /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37708C2520FA72BC007D5771 /* util.swift */; };
 		37E18FAC211E15970055B19C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 37E18FA8211E15960055B19C /* LICENSE */; };
 		37E18FAD211E15970055B19C /* .editorconfig in Resources */ = {isa = PBXBuildFile; fileRef = 37E18FA9211E15960055B19C /* .editorconfig */; };
@@ -25,6 +26,7 @@
 		3735AE5C209DE87E002EF991 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		3735AE5E209DE87E002EF991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3735AE5F209DE87E002EF991 /* flockscreen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = flockscreen.entitlements; sourceTree = "<group>"; };
+		3745DA9325FFBDA3004C9485 /* Credits.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		37708C2520FA72BC007D5771 /* util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
 		37E18FA8211E15960055B19C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		37E18FA9211E15960055B19C /* .editorconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .editorconfig; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				3735AE5E209DE87E002EF991 /* Info.plist */,
 				3735AE5F209DE87E002EF991 /* flockscreen.entitlements */,
 				37708C2520FA72BC007D5771 /* util.swift */,
+				3745DA9325FFBDA3004C9485 /* Credits.html */,
 			);
 			path = flockscreen;
 			sourceTree = "<group>";
@@ -104,7 +107,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 1170;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "Jay Linski";
 				TargetAttributes = {
 					3735AE53209DE87D002EF991 = {
@@ -144,6 +147,7 @@
 				37263C5225065BF200339896 /* MainMenu.xib in Resources */,
 				37E18FAE211E15970055B19C /* assets in Resources */,
 				37E18FAD211E15970055B19C /* .editorconfig in Resources */,
+				3745DA9425FFBDA3004C9485 /* Credits.html in Resources */,
 				37E18FAC211E15970055B19C /* LICENSE in Resources */,
 				3735AE5A209DE87E002EF991 /* Assets.xcassets in Resources */,
 				37E18FAF211E15970055B19C /* .gitignore in Resources */,
@@ -202,6 +206,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -262,6 +267,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -297,12 +303,14 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 20210315;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = flockscreen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = jaylinski.flockscreen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -317,12 +325,14 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 20210315;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = flockscreen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = jaylinski.flockscreen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
