@@ -36,7 +36,7 @@ You have to build this app on your own with Xcode. You can download a developmen
 
 ## Requirements
 
-* macOS 10.15 Catalina or greater
+* macOS 12 Monterey or greater
 * Camera (AVCaptureDevice)
 
 ## Roadmap
