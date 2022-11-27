@@ -43,7 +43,7 @@ You have to build this app on your own with Xcode. You can download a developmen
 
 * Implement preferences with [sindresorhus/Preferences](https://github.com/sindresorhus/Preferences) and SPM
   * Make activation shortcut configurable
-  * Make picutres folder configurable
+  * Make pictures folder configurable
   * Make deactivation (defuse) option configurable
 * Try to build app with sandbox enabled, so it can be published in app store
 * Add application to [serhii-londar/open-source-mac-os-apps](https://github.com/serhii-londar/open-source-mac-os-apps)
