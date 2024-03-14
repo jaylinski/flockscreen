@@ -30,8 +30,11 @@ class PhotoCaptureProcessor: NSObject, AVCapturePhotoCaptureDelegate {
             self.captureSession.addOutput(photoOutput)
             self.captureSession.commitConfiguration()
             self.captureSession.startRunning()
-
-            self.photoOutput.capturePhoto(with: photoSettings, delegate: self)
+            
+            // Wait for the camera to adjust the exposure
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
+                self.photoOutput.capturePhoto(with: self.photoSettings, delegate: self)
+            })
         } catch {
             print(AVCaptureSessionErrorKey.description)
         }
