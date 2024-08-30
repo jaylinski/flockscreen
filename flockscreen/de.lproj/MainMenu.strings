@@ -1,0 +1,48 @@
+
+/* Class = "NSMenuItem"; title = "flockscreen"; ObjectID = "1Xt-HY-uBw"; */
+"1Xt-HY-uBw.title" = "flockscreen";
+
+/* Class = "NSMenuItem"; title = "Quit flockscreen"; ObjectID = "4sb-4s-VLi"; */
+"4sb-4s-VLi.title" = "flockscreen beenden";
+
+/* Class = "NSMenuItem"; title = "About flockscreen"; ObjectID = "5kV-Vb-QxS"; */
+"5kV-Vb-QxS.title" = "Über flockscreen";
+
+/* Class = "NSMenuItem"; title = "Mouse trigger"; ObjectID = "8wU-n8-sQ3"; */
+"8wU-n8-sQ3.title" = "Auslöser: Maus";
+
+/* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
+"AYu-sK-qS6.title" = "Hauptmenü";
+
+/* Class = "NSMenuItem"; title = "Camera permission"; ObjectID = "Ai9-R7-qrf"; */
+"Ai9-R7-qrf.title" = "Kameraberechtigung";
+
+/* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
+"BOF-NM-1cW.title" = "Einstellungen…";
+
+/* Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ"; */
+"F2S-fz-NVQ.title" = "Hilfe";
+
+/* Class = "NSMenuItem"; title = "flockscreen Help"; ObjectID = "FKE-Sm-Kum"; */
+"FKE-Sm-Kum.title" = "flockscreen Hilfe";
+
+/* Class = "NSMenuItem"; title = "Preferences..."; ObjectID = "NZs-AW-es8"; */
+"NZs-AW-es8.title" = "Einstellungen…";
+
+/* Class = "NSMenuItem"; title = "Keyboard trigger"; ObjectID = "SmV-yR-Ffs"; */
+"SmV-yR-Ffs.title" = "Auslöser: Tastatur";
+
+/* Class = "NSMenuItem"; title = "Activate lock"; ObjectID = "cX5-Yq-7t8"; */
+"cX5-Yq-7t8.title" = "Sperre aktivieren";
+
+/* Class = "NSMenuItem"; title = "About flockscreen"; ObjectID = "cig-ll-Zji"; */
+"cig-ll-Zji.title" = "Über flockscreen";
+
+/* Class = "NSMenu"; title = "flockscreen"; ObjectID = "uQy-DD-JDr"; */
+"uQy-DD-JDr.title" = "flockscreen";
+
+/* Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd"; */
+"wpr-3q-Mcd.title" = "Hilfe";
+
+/* Class = "NSMenuItem"; title = "Quit flockscreen"; ObjectID = "zIe-Uw-zDO"; */
+"zIe-Uw-zDO.title" = "flockscreen beenden";

@@ -13,11 +13,11 @@ An invisible (fake) screen lock for macOS.
 ### Lock triggers
 
 * Mouse movements
-* Keyboard inputs<sup>[1]</sup>
+* Keyboard inputs<sup>1</sup>
 
 [1] Only works if you allow the app to control your computer. 
 You will be asked about this permission when you first start the app. 
-You can manually set it in "System preferences > Security > Privacy > Accessiblity".
+You can manually set it in "System preferences > Security & Privacy > Accessiblity".
 
 ## Download
 
@@ -36,18 +36,18 @@ You have to build this app on your own with Xcode. You can download a developmen
 
 ## Requirements
 
-* macOS 12 Monterey or greater
+* macOS 13 Ventura or greater
 * Camera (AVCaptureDevice)
 
 ## Roadmap
 
-* Implement preferences with [sindresorhus/Preferences](https://github.com/sindresorhus/Preferences) and SPM
+* Implement Settings (via SwiftUI or [sindresorhus/Preferences](https://github.com/sindresorhus/Preferences) and SPM)
   * Make activation shortcut configurable
   * Make pictures folder configurable
   * Make deactivation (defuse) option configurable
 * Try to build app with sandbox enabled, so it can be published in app store
 * Add application to [serhii-londar/open-source-mac-os-apps](https://github.com/serhii-londar/open-source-mac-os-apps)
-
+* Rewrite UI with SwiftUI (https://blog.schurigeln.com/menu-bar-apps-swift-ui/)
 
 ## License
 

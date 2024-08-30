@@ -11,40 +11,82 @@ struct System {
 }
 
 class PhotoCaptureProcessor: NSObject, AVCapturePhotoCaptureDelegate {
-    var captureDevice: AVCaptureDevice?
-    let captureSession = AVCaptureSession()
-    let photoOutput = AVCapturePhotoOutput()
-    let photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
+    var captureSession: AVCaptureSession?
+    var photoPath: URL?
+    let photoCaptureDelay: DispatchTimeInterval = .milliseconds(500)
     let picturesDirectory = FileManager.default.urls(for: .picturesDirectory, in: .userDomainMask)[0]
-
-    func captureStillImage() {
-        // Find the FaceTime HD camera object
-        captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
-        guard captureDevice != nil else { return }
-
+    
+    func captureStillImage(completion: @escaping ((URL) -> Void)) {
+        self.captureSession = AVCaptureSession()
+        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+        let photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
+        let photoOutput = AVCapturePhotoOutput()
+        
+        guard let photoSession = self.captureSession else {
+            debugPrint("Invalid capture session")
+            return
+        }
+        
+        guard let captureDevice = captureDevice else {
+            debugPrint("Couldn't find a capture device")
+            return
+        }
+        
+        guard AVCaptureDevice.authorizationStatus(for: .video) == AVAuthorizationStatus.authorized else {
+            debugPrint("Access to video capture device not granted")
+            return
+        }
+        
+        guard photoSession.canAddOutput(photoOutput) else {
+            debugPrint("Can't add output to capture session")
+            return
+        }
+        
+        photoSession.sessionPreset = AVCaptureSession.Preset.photo
+        photoSession.addOutput(photoOutput)
+        photoSession.commitConfiguration()
+        
         do {
-            try captureSession.addInput(AVCaptureDeviceInput(device: captureDevice!))
-
-            guard self.captureSession.canAddOutput(photoOutput) else { return }
-            self.captureSession.sessionPreset = AVCaptureSession.Preset.photo
-            self.captureSession.addOutput(photoOutput)
-            self.captureSession.commitConfiguration()
-            self.captureSession.startRunning()
+            let captureDeviceInput = try AVCaptureDeviceInput(device: captureDevice)
             
-            // Wait for the camera to adjust the exposure
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
-                self.photoOutput.capturePhoto(with: self.photoSettings, delegate: self)
+            if photoSession.canAddInput(captureDeviceInput) {
+                photoSession.addInput(captureDeviceInput)
+            } else {
+                debugPrint("Can't add input to capture session")
+                return
+            }
+            
+            // The startRunning() method is a blocking call which can take some time, therefore start the session
+            // on a serial dispatch queue so that we don’t block the main queue (which keeps the UI responsive).
+            DispatchQueue.main.async(execute: {
+                photoSession.startRunning()
+                
+                // Wait for the camera to adjust the exposure
+                DispatchQueue.main.asyncAfter(deadline: .now() + self.photoCaptureDelay, execute: {
+                    let time = NSDate().timeIntervalSince1970
+                    self.photoPath = self.picturesDirectory.appendingPathComponent("flockscreen.\(time).jpg", isDirectory: false)
+                    photoOutput.capturePhoto(with: photoSettings, delegate: self)
+                    completion(self.photoPath!)
+                })
             })
         } catch {
-            print(AVCaptureSessionErrorKey.description)
+            debugPrint(AVCaptureSessionErrorKey.description)
         }
     }
-
+    
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        let time = NSDate().timeIntervalSince1970
+        guard error == nil else {
+            debugPrint(error!)
+            return
+        }
+        
         let imageData = photo.fileDataRepresentation()
-        let imageUrl = self.picturesDirectory.appendingPathComponent("flockscreen.\(time).jpg", isDirectory: false)
-        ((try? imageData?.write(to: imageUrl)) as ()??)
-        self.captureSession.stopRunning()
+        ((try? imageData?.write(to: self.photoPath!)) as ()??)
+        
+        if let photoSession = self.captureSession {
+            if photoSession.isRunning {
+                photoSession.stopRunning()
+            }
+        }
     }
 }

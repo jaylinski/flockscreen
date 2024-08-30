@@ -12,6 +12,7 @@
 		3735AE5A209DE87E002EF991 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3735AE59209DE87E002EF991 /* Assets.xcassets */; };
 		3745DA9425FFBDA3004C9485 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 3745DA9325FFBDA3004C9485 /* Credits.html */; };
 		37708C2620FA72BC007D5771 /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37708C2520FA72BC007D5771 /* util.swift */; };
+		37931C3D2C7F7EE600EB4F7D /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 37931C3C2C7F7EE600EB4F7D /* Localizable.xcstrings */; };
 		37E18FAC211E15970055B19C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 37E18FA8211E15960055B19C /* LICENSE */; };
 		37E18FAD211E15970055B19C /* .editorconfig in Resources */ = {isa = PBXBuildFile; fileRef = 37E18FA9211E15960055B19C /* .editorconfig */; };
 		37E18FAE211E15970055B19C /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 37E18FAA211E15970055B19C /* assets */; };
@@ -28,6 +29,8 @@
 		3735AE5F209DE87E002EF991 /* flockscreen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = flockscreen.entitlements; sourceTree = "<group>"; };
 		3745DA9325FFBDA3004C9485 /* Credits.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		37708C2520FA72BC007D5771 /* util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
+		37931C3B2C7F20CF00EB4F7D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		37931C3C2C7F7EE600EB4F7D /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		37E18FA8211E15960055B19C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		37E18FA9211E15960055B19C /* .editorconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .editorconfig; sourceTree = "<group>"; };
 		37E18FAA211E15970055B19C /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
@@ -76,6 +79,7 @@
 				3735AE5F209DE87E002EF991 /* flockscreen.entitlements */,
 				37708C2520FA72BC007D5771 /* util.swift */,
 				3745DA9325FFBDA3004C9485 /* Credits.html */,
+				37931C3C2C7F7EE600EB4F7D /* Localizable.xcstrings */,
 			);
 			path = flockscreen;
 			sourceTree = "<group>";
@@ -129,6 +133,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 3735AE4B209DE87C002EF991;
 			productRefGroup = 3735AE55209DE87D002EF991 /* Products */;
@@ -147,6 +152,7 @@
 			files = (
 				37263C5225065BF200339896 /* MainMenu.xib in Resources */,
 				37E18FAE211E15970055B19C /* assets in Resources */,
+				37931C3D2C7F7EE600EB4F7D /* Localizable.xcstrings in Resources */,
 				37E18FAD211E15970055B19C /* .editorconfig in Resources */,
 				3745DA9425FFBDA3004C9485 /* Credits.html in Resources */,
 				37E18FAC211E15970055B19C /* LICENSE in Resources */,
@@ -174,6 +180,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3735AE5C209DE87E002EF991 /* Base */,
+				37931C3B2C7F20CF00EB4F7D /* de */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -236,7 +243,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -294,7 +301,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -311,7 +318,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20240110;
+				CURRENT_PROJECT_VERSION = 20240827;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = C66DXCPWKL;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -320,10 +327,12 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = jaylinski.flockscreen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -337,7 +346,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20240110;
+				CURRENT_PROJECT_VERSION = 20240827;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = C66DXCPWKL;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -346,10 +355,12 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = jaylinski.flockscreen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

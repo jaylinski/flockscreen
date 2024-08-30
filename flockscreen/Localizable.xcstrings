@@ -1,0 +1,30 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Captured photo and saved it to pictures folder." : {
+
+    },
+    "How to enable notification alerts" : {
+
+    },
+    "How to enable the keyboard trigger" : {
+
+    },
+    "How to grant access to the camera" : {
+
+    },
+    "In system settings, go to 'Notifications → flockscreen' and set notifications to 'Alerts'." : {
+
+    },
+    "In system settings, go to 'Privacy & Security → Accessibility' and add 'flockscreen'." : {
+
+    },
+    "In system settings, go to 'Privacy & Security → Camera' and allow 'flockscreen'." : {
+
+    },
+    "Lock was triggered!" : {
+
+    }
+  },
+  "version" : "1.0"
+}
